@@ -12,13 +12,9 @@ def load_movies() -> Dict[int, List[Dict]]:
     Returns:
         Dict[int, List[Dict]]: The movie data with years as keys and lists of movies as values.
     """
-    try:
-        with open('data_storage/movies.json', 'r') as file:
-            return json.load(file)
-    except FileNotFoundError:
-        return {}
+    pass  # Add implementation here
 
-def fetch_movie_data_for_year(year: int) -> List[Dict]:
+def fetch_movie_data_for_year(year: int) -> List[Dict]]:
     """Fetch the most popular movies for a given year and extract detailed information.
 
     Args:
@@ -27,22 +23,7 @@ def fetch_movie_data_for_year(year: int) -> List[Dict]:
     Returns:
         List[Dict]: A list of dictionaries containing detailed movie information.
     """
-    response_movies = fetch_movie_data_for_year(year)
-    movies = []
-    for movie in response_movies:
-        movie_type = extract_movie_type(movie)
-        duration_period = extract_duration_period(movie)
-        name = extract_name(movie, movie_type)
-        genre = extract_genre(movie)
-        movies.append(
-            {
-                'name': name,
-                'type': movie_type,
-                'duration': duration_period,
-                'genre': genre
-            }
-        )
-    return movies
+    pass  # Add implementation here
 
 def save_movies(movies: Dict[int, List[Dict]]):
     """Save the movie data to a JSON file.
@@ -50,8 +31,7 @@ def save_movies(movies: Dict[int, List[Dict]]):
     Args:
         movies (Dict[int, List[Dict]]): The movie data to save.
     """
-    with open('data_storage/movies.json', 'w') as file:
-        json.dump(movies, file, indent=4)
+    pass  # Add implementation here
 
 @app.get("/movies", response_model=Dict[int, List[Dict]])
 def get_movies() -> Dict[int, List[Dict]]:
@@ -60,10 +40,10 @@ def get_movies() -> Dict[int, List[Dict]]:
     Returns:
         Dict[int, List[Dict]]: The movie data with years as keys and lists of movies as values.
     """
-    return load_movies()
+    pass  # Add implementation here
 
 @app.get("/movies/{year}", response_model=List[Dict])
-def get_movies_by_year(year: int) -> List[Dict]:
+def get_movies_by_year(year: int) -> List[Dict]]:
     """Retrieve movies for a specific year from the JSON file.
 
     Args:
@@ -75,13 +55,10 @@ def get_movies_by_year(year: int) -> List[Dict]:
     Raises:
         HTTPException: If movies for the specified year are not found.
     """
-    movies = load_movies()
-    if str(year) in movies:
-        return movies[str(year)]
-    raise HTTPException(status_code=404, detail="Movies not found for this year")
+    pass  # Add implementation here
 
 @app.post("/movies/{year}", response_model=List[Dict])
-def add_movies_by_year(year: int) -> List[Dict]:
+def add_movies_by_year(year: int) -> List[Dict]]:
     """Fetch and add movies for a specific year to the JSON file.
 
     Args:
@@ -93,17 +70,10 @@ def add_movies_by_year(year: int) -> List[Dict]:
     Raises:
         HTTPException: If movies for the specified year already exist.
     """
-    movies = load_movies()
-    if str(year) in movies:
-        raise HTTPException(status_code=400, detail="Movies for this year already exist")
-    
-    new_movies = fetch_movie_data_for_year(year)
-    movies[str(year)] = new_movies
-    save_movies(movies)
-    return new_movies
+    pass  # Add implementation here
 
 @app.put("/movies/{year}", response_model=List[Dict]])
-def update_movie(year: int) -> List[Dict]:
+def update_movie(year: int) -> List[Dict]]:
     """Update movies for a specific year in the JSON file.
 
     Args:
@@ -112,11 +82,7 @@ def update_movie(year: int) -> List[Dict]:
     Returns:
         List[Dict]: A list of updated movies for the specified year.
     """
-    movies = load_movies()
-    new_movies = fetch_movie_data_for_year(year)
-    movies[str(year)] = new_movies
-    save_movies(movies)
-    return new_movies
+    pass  # Add implementation here
 
 @app.delete("/movies/{year}/{name}", response_model=Dict)
 def delete_movie(year: int, name: str) -> Dict:
@@ -132,19 +98,8 @@ def delete_movie(year: int, name: str) -> Dict:
     Raises:
         HTTPException: If the movie for the specified year and name is not found.
     """
-    movies = load_movies()
-    year_str = str(year)
-    if year_str not in movies:
-        raise HTTPException(status_code=404, detail="Movies not found for this year")
-
-    for i, movie in enumerate(movies[year_str]):
-        if movie['name'].lower() == name.lower():
-            deleted_movie = movies[year_str].pop(i)
-            save_movies(movies)
-            return deleted_movie
-    
-    raise HTTPException(status_code=404, detail="Movie not found")
+    pass  # Add implementation here
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000) # You can access the API docs at http://localhost:8000/docs
