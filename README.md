@@ -61,10 +61,8 @@ odyssey_project/
 ├── scraper.py
 ├── data_processing.py
 ├── api.py
-├── tests/
-│   └── test_scraper.py
-│   └── test_data_processing.py
-├── data/
+├── test_data_processing.py
+├── data_storage/
 │   └── movies.json
 └── venv/
 ```
