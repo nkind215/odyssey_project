@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def fetch_movie_data_for_year(
+def extract_movie_data_for_year(
     year: int,
 ) -> list:
     """Fetch the most popular movies in a given year
