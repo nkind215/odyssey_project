@@ -18,11 +18,19 @@ In order to run the project type into your terminal: `python api.py`. You can al
 
 ## File Structure
 odyssey_project/
+
 ├── README.md
+
 ├── requirements.txt
+
 ├── scraper.py
+
 ├── data_processing.py
+
 ├── api.py
+
 ├── test_data_processing.py
-└──data_storage/
-    └── movies.json
+
+└──data_storage/movies.json
+
+    
