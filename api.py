@@ -57,7 +57,7 @@ def save_movies(movies: List[Dict]):
     Args:
         movies (List[Dict]): The movie data to save.
     """
-    json_movies = {movies[0]['year']: movies}
+    json_movies = {str(movies[0]['year']): movies}
 
     try:
         with open("data_storage/movies.json", "r") as file:
