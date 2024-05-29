@@ -71,6 +71,9 @@ def save_movies(movies: List[Dict]):
         with open('data_storage/movies.json', 'w') as file:
             json.dump(data, file, indent=4)
 
+@app.get("/")
+def home():
+    return "This is a movie recommendation system."
 
 @app.get("/movies", response_model=Dict[int, List[Dict]])
 def get_movies() -> Dict[int, List[Dict]]:
